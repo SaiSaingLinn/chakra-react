@@ -1,38 +1,47 @@
-import * as React from "react"
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-} from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
-import { Logo } from "./Logo"
+import { Box, Button, Stack, Text } from '@chakra-ui/react'
+import React from 'react'
+import { Sidebar } from './components/sidebar'
 
-export const App = () => (
-  <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3}>
-        <ColorModeSwitcher justifySelf="flex-end" />
-        <VStack spacing={8}>
-          <Logo h="40vmin" pointerEvents="none" />
-          <Text>
-            Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
-          </Text>
-          <Link
-            color="teal.500"
-            href="https://chakra-ui.com"
-            fontSize="2xl"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn Chakra
-          </Link>
-        </VStack>
-      </Grid>
+function App() {
+  return (
+    <Box
+      as="div"
+      sx={{
+        display: "flex"
+      }}
+    >
+      <Sidebar />
+      <Box as="div" className="content">
+        <Box
+          as="div"
+          sx={{
+            padding: "10px 5px",
+          }}
+        >
+          <Box as="div" mb={3}>
+            <Text fontSize='2xl' as="b">KBZ's Chakra Utility Components</Text>
+          </Box>
+          <Box as="div" mb={3}>
+            <Text fontSize='1xl' as="b">Button</Text>
+          </Box>
+          <Stack direction='row' spacing={4} align='center'>
+            <Button colorScheme='teal' variant='solid'>
+              Button
+            </Button>
+            <Button colorScheme='teal' variant='outline'>
+              Button
+            </Button>
+            <Button colorScheme='teal' variant='ghost'>
+              Button
+            </Button>
+            <Button colorScheme='teal' variant='link'>
+              Button
+            </Button>
+          </Stack>
+        </Box>
+      </Box>
     </Box>
-  </ChakraProvider>
-)
+  )
+}
+
+export default App
