@@ -1,10 +1,24 @@
 import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Button, CircularProgress, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Stack, Text, useDisclosure, useToast } from '@chakra-ui/react'
-import React from 'react'
+import React, { ChangeEvent, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
+import { GetUser } from './actions/UserActions';
 import { Sidebar } from './components/sidebar'
+import { RootStore } from './store';
 
 function App() {
+  const dispatch = useDispatch();
+  const [userName, setUserName] = useState("");
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const userState = useSelector((state: RootStore) => state.user);
+
+  const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => setUserName(event.target.value);
+  const handleSubmit = () => {
+    dispatch(GetUser(userName) as any);
+  };
+
+  console.log('userState', userState)
+
   return (
     <Box
       as="div"
@@ -22,6 +36,13 @@ function App() {
         >
           <Box as="div" mb={3}>
             <Text fontSize='2xl' as="b">KBZ's Chakra Utility Components</Text>
+          </Box>
+          <Box as="div" mb={3}>
+            <Text fontSize='1xl' as="b">Redux Data</Text>
+          </Box>
+          <Box mb={3}>
+            <input type={"text"} onChange={handleNameChange} />
+            <button onClick={handleSubmit}>Search</button>
           </Box>
           <Box as="div" mb={3}>
             <Text fontSize='1xl' as="b">Button</Text>
@@ -45,49 +66,6 @@ function App() {
           </Box>
           <Box className="custom-class">
             <h1>I'm custom class</h1>
-          </Box>
-          <Box as="div" mb={3}>
-            <Text fontSize='1xl' as="b">Accordion</Text>
-          </Box>
-          <Box mb={3}>
-            <Accordion allowToggle>
-              <AccordionItem>
-                <h2>
-                  <AccordionButton>
-                    <Box flex='1' textAlign='left'>
-                      Section 1 title
-                    </Box>
-                    <AccordionIcon />
-                  </AccordionButton>
-                </h2>
-                <AccordionPanel pb={4}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                  veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                  commodo consequat.
-                </AccordionPanel>
-              </AccordionItem>
-
-              <AccordionItem>
-                <h2>
-                  <AccordionButton>
-                    <Box flex='1' textAlign='left'>
-                      Section 2 title
-                    </Box>
-                    <AccordionIcon />
-                  </AccordionButton>
-                </h2>
-                <AccordionPanel pb={4}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                  veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                  commodo consequat.
-                </AccordionPanel>
-              </AccordionItem>
-            </Accordion>
-          </Box>
-          <Box as="div" mb={3}>
-            <CircularProgress isIndeterminate color='green.300' />
           </Box>
           <Box as="div" mb={3}>
             <Text fontSize='1xl' as="b">Toast</Text>
