@@ -1,23 +1,23 @@
 import { Box, Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Stack, Text, useDisclosure, useToast } from '@chakra-ui/react'
 import React, { ChangeEvent, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-// import { GetUser } from './store/actions';
-// import { User } from "./store/actions"
 import { Sidebar } from './components/sidebar'
 import { RootStore } from './store';
-import { user } from './store/actions';
+import { product } from './store/actions/product/productActions';
 
 function App() {
   const dispatch = useDispatch();
   const [userName, setUserName] = useState("");
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const userState = useSelector((state: RootStore) => state.user);
+  const productState = useSelector((state: RootStore) => state.product);
 
   const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => setUserName(event.target.value);
   const handleSubmit = () => {
-    dispatch(user.getUser(userName) as any);
+    dispatch(product.getProduct(userName) as any);
   };
+
+  console.log('productState', productState)
 
   return (
     <Box
