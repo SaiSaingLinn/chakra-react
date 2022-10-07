@@ -19,7 +19,7 @@ function App() {
     dispatch(user.getUser(userName) as any);
   };
 
-  console.log('userState', userState)
+  // console.log('userState', userState)
 
   return (
     <Box
