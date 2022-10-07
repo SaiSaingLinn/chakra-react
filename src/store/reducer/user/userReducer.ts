@@ -1,4 +1,4 @@
-import { UserDispatchTypes, UserType, USER_FAIL, USER_LOADING, USER_SUCCESS } from "../actions/UserActionTypes";
+import { UserDispatchTypes, UserType, USER_FAIL, USER_LOADING, USER_SUCCESS } from "../../actions/user/userActionTypes";
 
 interface DefaultStateInitial {
     loading: boolean,

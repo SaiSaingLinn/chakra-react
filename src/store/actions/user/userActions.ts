@@ -1,8 +1,8 @@
 import axios from "axios";
 import { Dispatch } from "redux";
-import { UserDispatchTypes, USER_FAIL, USER_LOADING, USER_SUCCESS } from "./UserActionTypes";
+import { UserDispatchTypes, USER_FAIL, USER_LOADING, USER_SUCCESS } from "./userActionTypes";
 
-export const GetUser = (user: string) => async (dispatch: Dispatch<UserDispatchTypes>) => {
+const getUser = (user: string) => async (dispatch: Dispatch<UserDispatchTypes>) => {
     try {
         dispatch({
             type: USER_LOADING
@@ -19,4 +19,8 @@ export const GetUser = (user: string) => async (dispatch: Dispatch<UserDispatchT
             type: USER_FAIL
         })
     }
+}
+
+export const user = {
+    getUser
 }

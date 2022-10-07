@@ -1,9 +1,11 @@
-import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Button, CircularProgress, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Stack, Text, useDisclosure, useToast } from '@chakra-ui/react'
+import { Box, Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Stack, Text, useDisclosure, useToast } from '@chakra-ui/react'
 import React, { ChangeEvent, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { GetUser } from './actions/UserActions';
+// import { GetUser } from './store/actions';
+// import { User } from "./store/actions"
 import { Sidebar } from './components/sidebar'
 import { RootStore } from './store';
+import { user } from './store/actions';
 
 function App() {
   const dispatch = useDispatch();
@@ -14,7 +16,7 @@ function App() {
 
   const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => setUserName(event.target.value);
   const handleSubmit = () => {
-    dispatch(GetUser(userName) as any);
+    dispatch(user.getUser(userName) as any);
   };
 
   console.log('userState', userState)
