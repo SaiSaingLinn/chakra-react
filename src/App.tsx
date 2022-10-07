@@ -19,8 +19,6 @@ function App() {
     dispatch(user.getUser(userName) as any);
   };
 
-  // console.log('userState', userState)
-
   return (
     <Box
       as="div"
