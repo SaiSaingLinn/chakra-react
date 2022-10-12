@@ -5,7 +5,7 @@ const client = axios.create()
  
 client.interceptors.request.use(async (config) => {
   config.baseURL = process.env.REACT_APP_API_ENDPOINT
-  config.headers!.Authorization = `Token1234`
+  config.headers!.Authorization = ``
   return config
 }, (error) => {
   return Promise.reject(error)
